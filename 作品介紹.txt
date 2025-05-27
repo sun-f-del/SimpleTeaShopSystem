@@ -1,0 +1,1 @@
+本作品使用asp.net mvc和 sqlserver製作,基本的crud加 sql 預存程序,方便工作人員新增飲料項目,系統會再去做擴充
