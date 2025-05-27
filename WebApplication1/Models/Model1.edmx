@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="drinkshopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="drinks">
+          <Key>
+            <PropertyRef Name="drinkid" />
+          </Key>
+          <Property Name="drinkid" Type="int" Nullable="false" />
+          <Property Name="deinkname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="istoppings" Type="bit" Nullable="false" />
+          <Property Name="toppingsname" Type="varchar" MaxLength="50" />
+          <Property Name="sugerlevel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="icelevel" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Function Name="drinkDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="drinkid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="drinkEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="drinkid" Type="int" Mode="In" />
+          <Parameter Name="istoppings" Type="bit" Mode="In" />
+          <Parameter Name="toppingsname" Type="varchar" Mode="In" />
+          <Parameter Name="sugerlevel" Type="varchar" Mode="In" />
+          <Parameter Name="icelevel" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="drinkInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="drinkid" Type="int" Mode="In" />
+          <Parameter Name="deinkname" Type="varchar" Mode="In" />
+          <Parameter Name="istoppings" Type="bit" Mode="In" />
+          <Parameter Name="toppingsname" Type="varchar" Mode="In" />
+          <Parameter Name="sugerlevel" Type="varchar" Mode="In" />
+          <Parameter Name="icelevel" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="drinkSelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="drinkname" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="drinkshopModelStoreContainer">
+          <EntitySet Name="drinks" EntityType="Self.drinks" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="drinkshopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="drink">
+          <Key>
+            <PropertyRef Name="drinkid" />
+          </Key>
+          <Property Name="drinkid" Type="Int32" Nullable="false" />
+          <Property Name="deinkname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="istoppings" Type="Boolean" Nullable="false" />
+          <Property Name="toppingsname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sugerlevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="icelevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="drinkshopEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="drinks" EntityType="Self.drink" />
+          <FunctionImport Name="drinkDelete">
+            <Parameter Name="drinkid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="drinkEdit">
+            <Parameter Name="drinkid" Mode="In" Type="Int32" />
+            <Parameter Name="istoppings" Mode="In" Type="Boolean" />
+            <Parameter Name="toppingsname" Mode="In" Type="String" />
+            <Parameter Name="sugerlevel" Mode="In" Type="String" />
+            <Parameter Name="icelevel" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="drinkInsert">
+            <Parameter Name="drinkid" Mode="In" Type="Int32" />
+            <Parameter Name="deinkname" Mode="In" Type="String" />
+            <Parameter Name="istoppings" Mode="In" Type="Boolean" />
+            <Parameter Name="toppingsname" Mode="In" Type="String" />
+            <Parameter Name="sugerlevel" Mode="In" Type="String" />
+            <Parameter Name="icelevel" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="drinkSelete" ReturnType="Collection(drinkshopModel.drinkSelete_Result)">
+            <Parameter Name="drinkname" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="drinkSelete_Result">
+          <Property Type="Int32" Name="drinkid" Nullable="false" />
+          <Property Type="String" Name="deinkname" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="istoppings" Nullable="false" />
+          <Property Type="String" Name="toppingsname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sugerlevel" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="icelevel" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="drinkshopModelStoreContainer" CdmEntityContainer="drinkshopEntities2">
+          <EntitySetMapping Name="drinks">
+            <EntityTypeMapping TypeName="drinkshopModel.drink">
+              <MappingFragment StoreEntitySet="drinks">
+                <ScalarProperty Name="drinkid" ColumnName="drinkid" />
+                <ScalarProperty Name="deinkname" ColumnName="deinkname" />
+                <ScalarProperty Name="istoppings" ColumnName="istoppings" />
+                <ScalarProperty Name="toppingsname" ColumnName="toppingsname" />
+                <ScalarProperty Name="sugerlevel" ColumnName="sugerlevel" />
+                <ScalarProperty Name="icelevel" ColumnName="icelevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="drinkDelete" FunctionName="drinkshopModel.Store.drinkDelete" />
+          <FunctionImportMapping FunctionImportName="drinkEdit" FunctionName="drinkshopModel.Store.drinkEdit" />
+          <FunctionImportMapping FunctionImportName="drinkInsert" FunctionName="drinkshopModel.Store.drinkInsert" />
+          <FunctionImportMapping FunctionImportName="drinkSelete" FunctionName="drinkshopModel.Store.drinkSelete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="drinkshopModel.drinkSelete_Result">
+                <ScalarProperty Name="drinkid" ColumnName="drinkid" />
+                <ScalarProperty Name="deinkname" ColumnName="deinkname" />
+                <ScalarProperty Name="istoppings" ColumnName="istoppings" />
+                <ScalarProperty Name="toppingsname" ColumnName="toppingsname" />
+                <ScalarProperty Name="sugerlevel" ColumnName="sugerlevel" />
+                <ScalarProperty Name="icelevel" ColumnName="icelevel" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

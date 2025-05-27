@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebApplication1.Models.drinkSelete_Result>
+<br />
+<br />
+<div>
+    @using (@Html.BeginForm("Index", "Drink", FormMethod.Post))
+    {
+        @Html.TextBox("id")
+        <button type="submit">飲料查詢</button>
+    }
+</div>
+<br />
+<br />
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("飲料總類")
+            </th>
+            <th>
+                @Html.DisplayName("是否加料")
+            </th>
+            <th>
+                @Html.DisplayName("加料總類")
+            </th>
+            <th>
+                @Html.DisplayName("糖量")
+            </th>
+            <th>
+                @Html.DisplayName("冰量")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.deinkname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.istoppings)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toppingsname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sugerlevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.icelevel)
+                </td>
+                <td>
+                    @Html.ActionLink("此筆訂單修改", "Edit", new { id = item.drinkid })
+                    @using (Html.BeginForm("Delete", "Drink", new { id = item.drinkid }, FormMethod.Post))
+                    {
+                        <button type="submit">此筆訂單刪除</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

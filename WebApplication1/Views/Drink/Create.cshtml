@@ -1,0 +1,59 @@
+﻿@model WebApplication1.Models.drink
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>飲料種類新增</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <strong>@Html.Label("飲料種類", htmlAttributes: new { @class = "control-label col-md-2" })</strong>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deinkname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.deinkname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <strong>@Html.Label("是否加料", htmlAttributes: new { @class = "control-label col-md-2" })</strong>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.istoppings)
+                    @Html.ValidationMessageFor(model => model.istoppings, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <strong> @Html.Label("加料總類", htmlAttributes: new { @class = "control-label col-md-2" })</strong>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.toppingsname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.toppingsname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <strong>@Html.Label("糖類", htmlAttributes: new { @class = "control-label col-md-2" })</strong>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sugerlevel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sugerlevel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <strong>@Html.Label("冰量", htmlAttributes: new { @class = "control-label col-md-2" })</strong>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.icelevel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.icelevel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="新增" class="btn btn-secondary" />
+            </div>
+        </div>
+    </div>
+}
